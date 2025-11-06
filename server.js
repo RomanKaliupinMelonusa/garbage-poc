@@ -22,14 +22,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.get('/', (req, res) => {
-  res.render('home', { 
+  res.render('home', {
     title: 'Home Page',
-    message: 'Welcome to our Node.js Server with EJS!'
+    message: 'Welcome to our Node.js Server with EJS!',
+    iframeUrl: process.env.IFRAME_URL || 'https://example.com'
   });
 });
 
 app.get('/contact', (req, res) => {
-  res.render('contact', { 
+  res.render('contact', {
     title: 'Contact Page',
     message: 'Get in touch with us'
   });
@@ -38,8 +39,8 @@ app.get('/contact', (req, res) => {
 // Handle form submission from home page
 app.post('/submit-home', (req, res) => {
   console.log('Home form data received:', req.body);
-  res.json({ 
-    success: true, 
+  res.json({
+    success: true,
     message: 'Home form data received successfully!',
     data: req.body
   });
@@ -48,8 +49,8 @@ app.post('/submit-home', (req, res) => {
 // Handle form submission from contact page
 app.post('/submit-contact', (req, res) => {
   console.log('Contact form data received:', req.body);
-  res.json({ 
-    success: true, 
+  res.json({
+    success: true,
     message: 'Contact form submitted successfully!',
     data: req.body
   });
